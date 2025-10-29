@@ -1,0 +1,7 @@
+<launch>
+
+    <node pkg="xian_pkg" type="hello_p.py" name="hello_p_node" output="screen"/>
+    <node pkg="xian_pkg" type="hello_c" name="hello_cpp_node" output="screen"/>
+    
+
+</launch>

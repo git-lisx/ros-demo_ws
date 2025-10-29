@@ -1,0 +1,52 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "ROS: Launch文件调试",
+            "type": "ros",
+            "request": "launch",
+            "target": "/home/dataexa/lisx/ros-demo_ws/src/xian_pkg/launch/start_demo.launch"
+        },
+        {
+            "name": "ROS Debug: cpp单节点调试",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/home/dataexa/lisx/ros-demo_ws/devel/lib/xian_pkg/hello_c",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "/home/dataexa/lisx/ros-demo_ws",
+            "environment": [
+                {
+                    "name": "ROS_MASTER_URI",
+                    "value": "http://localhost:11311"
+                },
+                {
+                    "name": "ROS_PACKAGE_PATH",
+                    "value": "${env:ROS_PACKAGE_PATH}"
+                }
+            ],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            // "preLaunchTask": "catkin_build",
+            // "postDebugTask": "source env"
+        },
+        {
+            "name": "ROS Debug: python单节点调试",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "/home/dataexa/lisx/ros-demo_ws/src/xian_pkg/scripts/hello_p.py",
+            "args": [],
+            "console": "integratedTerminal",
+            "env": {
+                "ROS_MASTER_URI": "http://localhost:11311",
+                "ROS_PACKAGE_PATH": "${env:ROS_PACKAGE_PATH}"
+            }
+        }
+    ]
+}
