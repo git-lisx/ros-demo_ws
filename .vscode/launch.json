@@ -64,7 +64,7 @@
             "preLaunchTask": "source_ros"
         },
         {
-            "name": "Python ROS 通用调试",
+            "name": "ROS Python通用调试",
             "type": "debugpy",
             "request": "launch",
             "program": "${file}",
@@ -72,6 +72,42 @@
             "env": {
                 "PYTHONPATH": "${workspaceFolder}/devel/lib/python3/dist-packages:${env:PYTHONPATH}"
             }
+        },
+        {
+            "name": "ROS C++通用调试",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/devel/lib/xian_pkg/${fileBasenameNoExtension}",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [
+                {
+                    "name": "ROS_MASTER_URI",
+                    "value": "http://localhost:11311"
+                },
+                {
+                    "name": "ROS_PACKAGE_PATH",
+                    "value": "${workspaceFolder}/src:${env:ROS_PACKAGE_PATH}"
+                },
+                {
+                    "name": "ROS_ROOT",
+                    "value": "/opt/ros/noetic/share/ros"
+                },
+                {
+                    "name": "LD_LIBRARY_PATH",
+                    "value": "${workspaceFolder}/devel/lib:${env:LD_LIBRARY_PATH}"
+                }
+            ],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "catkin_make:debug"
         }
     ]
 }

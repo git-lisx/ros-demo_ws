@@ -8,18 +8,12 @@ int main(int argc, char **argv)
     setlocale(LC_ALL, "");
     ros::init(argc, argv, "add_two_ints_client");
 
-    // if (argc != 3)
-    // {
-    //     ROS_INFO("用法: rosrun xian_pkg add_two_ints_client X Y");
-    //     return 1;
-    // }
+    ros::service::waitForService("/add_two_ints");
 
     ros::NodeHandle nh;
-    ros::ServiceClient client = nh.serviceClient<xian_pkg::AddTwoInts>("add_two_ints");
+    ros::ServiceClient client = nh.serviceClient<xian_pkg::AddTwoInts>("/add_two_ints");
 
     xian_pkg::AddTwoInts srv;
-    // srv.request.a = atoll(argv[1]);
-    // srv.request.b = atoll(argv[2]);
     srv.request.a = 1;
     srv.request.b = 3;
 

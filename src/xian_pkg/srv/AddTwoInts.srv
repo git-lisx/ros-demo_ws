@@ -1,4 +1,6 @@
+# 请求参数
 int64 a
 int64 b
 ---
+# 响应
 int64 sum
