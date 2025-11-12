@@ -141,6 +141,7 @@ catkin_package(
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
+# 头文件目录
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
@@ -161,8 +162,19 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/xian_pkg_node.cpp)
 
+# 编译节点
 # add_executable(节点名称 src/c++源文件.cpp)
 add_executable(hello_c src/hello_c.cpp)
+add_executable(add_two_ints_server src/add_two_ints_server.cpp)
+add_executable(add_two_ints_client src/add_two_ints_client.cpp)
+
+# 添加依赖关系，确保在消息/服务文件生成之后再编译节点
+add_dependencies(add_two_ints_server ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(add_two_ints_client ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
+# 链接 ROS 库（如 roscpp 等）
+target_link_libraries(add_two_ints_server ${catkin_LIBRARIES})
+target_link_libraries(add_two_ints_client ${catkin_LIBRARIES})
 
 
 ## Rename C++ executable without prefix
