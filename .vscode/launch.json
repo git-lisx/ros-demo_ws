@@ -47,6 +47,31 @@
                 "ROS_MASTER_URI": "http://localhost:11311",
                 "ROS_PACKAGE_PATH": "${env:ROS_PACKAGE_PATH}"
             }
+        },
+        {
+            "name": "source ROS Python 节点调试",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/src/xian_pkg/scripts/add_two_ints_server.py",
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/devel/lib/python3/dist-packages:${env:PYTHONPATH}",
+                "ROS_PACKAGE_PATH": "${workspaceFolder}/src:${env:ROS_PACKAGE_PATH}",
+                "ROS_MASTER_URI": "http://localhost:11311",
+                "ROS_ROOT": "/opt/ros/noetic/share/ros"
+            },
+            // 运行前先source环境
+            "preLaunchTask": "source_ros"
+        },
+        {
+            "name": "Python ROS 通用调试",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "${workspaceFolder}/devel/lib/python3/dist-packages:${env:PYTHONPATH}"
+            }
         }
     ]
 }

@@ -33,6 +33,12 @@
                 "reveal": "always"//可选always或者silence，代表是否输出信息
             },
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "source_ros",
+            "type": "shell",
+            "command": "source /opt/ros/noetic/setup.bash && source ${workspaceFolder}/devel/setup.bash",
+            "problemMatcher": []
         }
     ]
 }
