@@ -61,10 +61,7 @@ add_message_files(
 )
 
 # 生成消息时依赖于 std_msgs
-generate_messages(
-  DEPENDENCIES
-  std_msgs
-)
+# generate_messages() should be called after add_message_files() and add_service_files()
 
 
 ## Generate services in the 'srv' folder
@@ -73,6 +70,19 @@ generate_messages(
 #   Service1.srv
 #   Service2.srv
 # )
+
+# 配置 srv 源文件
+add_service_files(
+  FILES
+  AddTwoInts.srv
+)
+
+# generate_messages() 必须放在 add_service_files() 之后
+## 生成代码（必须在 add_service_files 之后）
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
 
 ## Generate actions in the 'action' folder
 # add_action_files(
