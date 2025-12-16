@@ -60,10 +60,6 @@ add_message_files(
   Person.msg
 )
 
-# 生成消息时依赖于 std_msgs
-# generate_messages() should be called after add_message_files() and add_service_files()
-
-
 ## Generate services in the 'srv' folder
 # add_service_files(
 #   FILES
@@ -77,8 +73,7 @@ add_service_files(
   AddTwoInts.srv
 )
 
-# generate_messages() 必须放在 add_service_files() 之后
-## 生成代码（必须在 add_service_files 之后）
+# 生成代码 generate_messages() 必须放在 add_message_files() 和 add_service_files() 之后
 generate_messages(
   DEPENDENCIES
   std_msgs
@@ -152,29 +147,19 @@ include_directories(
 #   src/${PROJECT_NAME}/xian_pkg.cpp
 # )
 
-## Add cmake target dependencies of the library
-## as an example, code may need to be generated before libraries
-## either from message generation or dynamic reconfigure
-# add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-
-## Declare a C++ executable
-## With catkin_make all packages are built within a single CMake context
-## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/xian_pkg_node.cpp)
 
 # 编译节点
 # add_executable(节点名称 src/c++源文件.cpp)
 add_executable(hello_c src/hello_c.cpp)
 add_executable(add_two_ints_server src/add_two_ints_server.cpp)
 add_executable(add_two_ints_client src/add_two_ints_client.cpp)
+add_executable(set_bool_server src/set_bool_server.cpp)
+add_executable(set_bool_client src/set_bool_client.cpp)
 
 # 添加依赖关系，确保在消息/服务文件生成之后再编译节点
 add_dependencies(add_two_ints_server ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(add_two_ints_client ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
-# 链接 ROS 库（如 roscpp 等）
-target_link_libraries(add_two_ints_server ${catkin_LIBRARIES})
-target_link_libraries(add_two_ints_client ${catkin_LIBRARIES})
 
 
 ## Rename C++ executable without prefix
@@ -187,16 +172,15 @@ target_link_libraries(add_two_ints_client ${catkin_LIBRARIES})
 ## same as for the library above
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
-## Specify libraries to link a library or executable target against
-# target_link_libraries(${PROJECT_NAME}_node
-#   ${catkin_LIBRARIES}
-# )
-# target_link_libraries(节点名称
-#   ${catkin_LIBRARIES}
-# )
+# 链接 ROS 库（如 roscpp 等）
 target_link_libraries(hello_c
   ${catkin_LIBRARIES}
 )
+target_link_libraries(add_two_ints_server ${catkin_LIBRARIES})
+target_link_libraries(add_two_ints_client ${catkin_LIBRARIES})
+target_link_libraries(set_bool_server ${catkin_LIBRARIES})
+target_link_libraries(set_bool_client ${catkin_LIBRARIES})
+
 
 #############
 ## Install ##

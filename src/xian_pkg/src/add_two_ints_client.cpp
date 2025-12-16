@@ -1,5 +1,5 @@
 #include "ros/ros.h"
-#include "xian_pkg/AddTwoInts.h" // 替换成你的包名
+#include "xian_pkg/AddTwoInts.h"
 #include <cstdlib>
 
 int main(int argc, char **argv)

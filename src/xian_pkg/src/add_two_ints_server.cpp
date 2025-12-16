@@ -1,5 +1,5 @@
 #include "ros/ros.h"
-#include "xian_pkg/AddTwoInts.h" // 替换成你的包名
+#include "xian_pkg/AddTwoInts.h"
 
 // 回调函数：接收请求并返回响应
 bool handle_add(xian_pkg::AddTwoInts::Request &req,
