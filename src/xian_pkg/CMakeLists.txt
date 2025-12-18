@@ -185,7 +185,7 @@ target_link_libraries(set_bool_client ${catkin_LIBRARIES})
 #############
 ## Install ##
 #############
-
+# 配置catkin_make install
 # all install targets should use catkin DESTINATION variables
 # See http://ros.org/doc/api/catkin/html/adv_user_guide/variables.html
 
@@ -193,6 +193,10 @@ target_link_libraries(set_bool_client ${catkin_LIBRARIES})
 ## in contrast to setup.py, you can choose the destination
 catkin_install_python(PROGRAMS
   scripts/hello_p.py
+  scripts/add_two_ints_client.py
+  scripts/add_two_ints_server.py
+  scripts/publisher.py
+  scripts/listener.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
@@ -201,6 +205,14 @@ catkin_install_python(PROGRAMS
 # install(TARGETS ${PROJECT_NAME}_node
 #   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 # )
+install(TARGETS 
+  hello_c 
+  add_two_ints_server 
+  add_two_ints_client 
+  set_bool_server
+  set_bool_client
+  RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 
 ## Mark libraries for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_libraries.html
@@ -216,6 +228,9 @@ catkin_install_python(PROGRAMS
 #   FILES_MATCHING PATTERN "*.h"
 #   PATTERN ".svn" EXCLUDE
 # )
+install(DIRECTORY launch/
+  DESTINATION ${CATKIN_PACKAGE_SHARE_DESTINATION}/launch
+)
 
 ## Mark other files for installation (e.g. launch and bag files, etc.)
 # install(FILES

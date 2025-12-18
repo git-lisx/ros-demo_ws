@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "ROS: Launch文件调试",
+            "name": "ROS:Launch文件调试",
             "type": "ros",
             "request": "launch",
             "target": "/home/dataexa/lisx/ros-demo_ws/src/xian_pkg/launch/start_demo.launch"
@@ -60,7 +60,7 @@
                 "ROS_MASTER_URI": "http://localhost:11311",
                 "ROS_ROOT": "/opt/ros/noetic/share/ros"
             },
-            // 运行前先source环境
+            // 运行前先source环境，在tasks.json中定义了"label": "source_ros"
             "preLaunchTask": "source_ros"
         },
         {
