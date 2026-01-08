@@ -1,0 +1,61 @@
+[
+
+                    {
+                        "name": null,
+                        "distanceToPreviousPointM": 0.0,
+                        "flightPathStatus": "EXECUTING",
+                        "latitude": 24.489601101588832,
+                        "longitude": 118.18095871122524,
+                        "relativeAltitudeM": 50.0,
+                        "speedMS": 4.0,
+                        "cameraAction": "START_PHOTO_DISTANCE",
+                        "yawDeg": null,
+                        "isFlyThrough": null,
+                        "gimbalPitchDeg": -90.0,
+                        "gimbalYawDeg": null,
+                        "loiterTimeS": null,
+                        "cameraPhotoIntervalS": null,
+                        "acceptanceRadiusM": null,
+                        "cameraPhotoDistanceM": 3.4873202,
+                        "vehicleAction": null
+                    },
+                    {
+                        "name": null,
+                        "distanceToPreviousPointM": 75.72347118610114,
+                        "flightPathStatus": "EXECUTING",
+                        "latitude": 24.489074071443405,
+                        "longitude": 118.18048289043716,
+                        "relativeAltitudeM": 50.0,
+                        "speedMS": 4.0,
+                        "cameraAction": null,
+                        "yawDeg": null,
+                        "isFlyThrough": null,
+                        "gimbalPitchDeg": -90.0,
+                        "gimbalYawDeg": null,
+                        "loiterTimeS": null,
+                        "cameraPhotoIntervalS": null,
+                        "acceptanceRadiusM": null,
+                        "cameraPhotoDistanceM": null,
+                        "vehicleAction": null
+                    },
+                    {
+                        "name": null,
+                        "distanceToPreviousPointM": 96.36915735642036,
+                        "flightPathStatus": "EXECUTING",
+                        "latitude": 24.48914062672375,
+                        "longitude": 118.1814308328297,
+                        "relativeAltitudeM": 50.0,
+                        "speedMS": 4.0,
+                        "cameraAction": "STOP_PHOTO_DISTANCE",
+                        "yawDeg": null,
+                        "isFlyThrough": null,
+                        "gimbalPitchDeg": -90.0,
+                        "gimbalYawDeg": null,
+                        "loiterTimeS": null,
+                        "cameraPhotoIntervalS": null,
+                        "acceptanceRadiusM": null,
+                        "cameraPhotoDistanceM": null,
+                        "vehicleAction": null
+                    }
+
+                ]

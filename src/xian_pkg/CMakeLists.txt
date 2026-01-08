@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0.2)
 project(xian_pkg)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+add_compile_options(-std=c++11)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -12,11 +12,12 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   std_msgs
   message_generation
+  mavros_msgs
 )
 
 ## System dependencies are found with CMake's conventions
-# find_package(Boost REQUIRED COMPONENTS system)
-
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(JSONCPP jsoncpp)
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
@@ -79,19 +80,6 @@ generate_messages(
   std_msgs
 )
 
-## Generate actions in the 'action' folder
-# add_action_files(
-#   FILES
-#   Action1.action
-#   Action2.action
-# )
-
-## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs
-# )
-
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
 ################################################
@@ -124,9 +112,9 @@ generate_messages(
 
 #执行时依赖
 catkin_package(
-#  INCLUDE_DIRS include
+  INCLUDE_DIRS include
 #  LIBRARIES xian_pkg
- CATKIN_DEPENDS roscpp rospy std_msgs message_runtime
+ CATKIN_DEPENDS roscpp rospy std_msgs message_runtime mavros_msgs
 #  DEPENDS system_lib
 )
 
@@ -138,7 +126,7 @@ catkin_package(
 ## Your package locations should be listed before other locations
 # 头文件目录
 include_directories(
-# include
+  include
   ${catkin_INCLUDE_DIRS}
 )
 
@@ -155,10 +143,12 @@ add_executable(add_two_ints_server src/add_two_ints_server.cpp)
 add_executable(add_two_ints_client src/add_two_ints_client.cpp)
 add_executable(set_bool_server src/set_bool_server.cpp)
 add_executable(set_bool_client src/set_bool_client.cpp)
+add_executable(uav_manager src/main_uav_manager.cpp src/uav_manager.cpp)
 
 # 添加依赖关系，确保在消息/服务文件生成之后再编译节点
 add_dependencies(add_two_ints_server ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(add_two_ints_client ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(uav_manager ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 
 
@@ -180,7 +170,10 @@ target_link_libraries(add_two_ints_server ${catkin_LIBRARIES})
 target_link_libraries(add_two_ints_client ${catkin_LIBRARIES})
 target_link_libraries(set_bool_server ${catkin_LIBRARIES})
 target_link_libraries(set_bool_client ${catkin_LIBRARIES})
-
+target_link_libraries(uav_manager
+  ${catkin_LIBRARIES}
+  ${JSONCPP_LIBRARIES}
+)
 
 #############
 ## Install ##
@@ -205,9 +198,10 @@ catkin_install_python(PROGRAMS
 # install(TARGETS ${PROJECT_NAME}_node
 #   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 # )
-install(TARGETS 
-  hello_c 
-  add_two_ints_server 
+install(TARGETS
+        uav_manager
+  hello_c
+  add_two_ints_server
   add_two_ints_client 
   set_bool_server
   set_bool_client
